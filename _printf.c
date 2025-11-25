@@ -2,6 +2,12 @@
 #include <unistd.h>
 #include "main.h"
 
+/**
+ * _printf - displays an format
+ * @format: %c, %s, %%
+ * Return: number of char
+ */
+
 int _printf(const char *format, ...)
 {
 	va_list args;
@@ -16,12 +22,49 @@ int _printf(const char *format, ...)
 
 	while (format[i])
 	{
+		if (format[i] == '%')
+		{
+			i++;
+			if (format[i] == '\0')
+				break;
+
 		if (format[i] == 'c')
 		{
 			c = (char)va_arg(args,int);
 			write(1, &c, 1);
 			count++;
 		}
+		else if (format[i] == 's')
+		{
+			str = va_arg(args, char *);
+			if (str == NULL)
+				str = "(null)";
+			whil (*str)
+			{
+				write(1, str, 1);
+				str++;
+				count++;
+			}
+		}
+		else if (format[i] == '%')
+		{
+			write(1, "%", 1);
+			count++;
+		}
+		else
+		{
+			write(1, "%", 1);
+			write(1, &format[i], 1);
+			count += 2;
+		}
+		}
+	else
+	{
+	write(1, &format[i], 1);
+	count++;
+	}
+	i++;
+	}
 
 	va_ends(args);
 	return (count);
