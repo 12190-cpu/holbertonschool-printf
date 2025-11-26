@@ -5,9 +5,9 @@
 #include <unistd.h>
 
 /**
- * struct fmt - Associe un spécificateur à sa fonction
- * @fmt: le caractère du format (ex: 'c', 's', '%')
- * @fn: pointeur vers la fonction correspondante
+ * struct fmt - associates a spec to his function
+ * @fmt: the char of the  format (ex: 'c', 's', '%')
+ * @fn: pointer to the corresponding function
  */
 typedef struct fmt
 {
@@ -15,18 +15,11 @@ typedef struct fmt
 	int (*fn)(va_list);
 } fmt_t;
 
-/* Prototype principal */
 int _printf(const char *format, ...);
-
-/* Handler */
 int handle_print(const char *format, va_list args, int *i);
-
-/* Fonctions d’affichage */
 int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
-
-/* Utilitaire */
 int _putchar(char c);
 
-#endif /* MAIN_H */
+#endif
