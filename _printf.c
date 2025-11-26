@@ -16,7 +16,6 @@ int _printf(const char *format, ...)
 		{'%', print_percent},
 		{'\0', NULL}
 	};
-
 	if (format == NULL)
 		return (-1);
 
@@ -29,7 +28,6 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0')
 				break;
-
 			j = 0;
 			while (specifiers[j].spec)
 			{
@@ -40,8 +38,6 @@ int _printf(const char *format, ...)
 				}
 				j++;
 			}
-
-			/* Si aucun spécificateur reconnu, on affiche tel quel */
 			if (specifiers[j].spec == '\0')
 			{
 				_putchar('%');
@@ -56,7 +52,6 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-
 	va_end(args);
 	return (count);
 }
