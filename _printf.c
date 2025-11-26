@@ -1,24 +1,28 @@
 #include "main.h"
 
 /**
- * _printf - imprime du texte formaté (version simplifiée)
- * @format: chaîne de format (avec %c, %s, %%)
- *
+ * _printf - affiche du texte formaté (simplifié)
+ * @format: chaîne de format
  * Return: nombre total de caractères imprimés
  */
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0, count = 0;
-	char c;
-	char *str;
+	int i = 0, j, count = 0;
+
+	format_t specifiers[] = {
+		{'c', print_char},
+		{'s', print_string},
+		{'%', print_percent},
+		{'\0', NULL}
+	};
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
 
-	while (format[i])
+	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{
@@ -26,39 +30,28 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 				break;
 
-			if (format[i] == 'c')
+			j = 0;
+			while (specifiers[j].spec)
 			{
-				c = (char)va_arg(args, int);
-				write(1, &c, 1);
-				count++;
-			}
-			else if (format[i] == 's')
-			{
-				str = va_arg(args, char *);
-				if (str == NULL)
-					str = "(null)";
-				while (*str)
+				if (format[i] == specifiers[j].spec)
 				{
-					write(1, str, 1);
-					str++;
-					count++;
+					count += specifiers[j].func(args);
+					break;
 				}
+				j++;
 			}
-			else if (format[i] == '%')
+
+			/* Si aucun spécificateur reconnu, on affiche tel quel */
+			if (specifiers[j].spec == '\0')
 			{
-				write(1, "%", 1);
-				count++;
-			}
-			else
-			{
-				write(1, "%", 1);
-				write(1, &format[i], 1);
+				_putchar('%');
+				_putchar(format[i]);
 				count += 2;
 			}
 		}
 		else
 		{
-			write(1, &format[i], 1);
+			_putchar(format[i]);
 			count++;
 		}
 		i++;
