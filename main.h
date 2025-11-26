@@ -5,25 +5,21 @@
 #include <unistd.h>
 
 /**
- * struct format - structure pour lier un spécificateur à sa fonction
- * @spec: caractère du spécificateur (ex: 'c', 's', '%')
- * @func: pointeur vers la fonction correspondante
+ * struct fmt - associates a spec to his function
+ * @fmt: the char of the  format (ex: 'c', 's', '%')
+ * @fn: pointer to the corresponding function
  */
-typedef struct format
+typedef struct fmt
 {
-	char spec;
-	int (*func)(va_list);
-} format_t;
+	char fmt;
+	int (*fn)(va_list);
+} fmt_t;
 
-/* --- Fonctions principales --- */
 int _printf(const char *format, ...);
-
-/* --- Fonctions de conversion --- */
+int handle_print(const char *format, va_list args, int *i);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
-
-/* --- Fonctions utilitaires --- */
 int _putchar(char c);
 
-#endif /* MAIN_H */
+#endif
