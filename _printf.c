@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 				break;
 
 			j = 0;
-			while (speicifiers[j].spec)
+			while (specifiers[j].spec)
 			{
 				if (format[i] == specifiers[j].spec)
 				{
