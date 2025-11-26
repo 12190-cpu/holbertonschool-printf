@@ -8,7 +8,7 @@ typedef struct format_specifier
 {
 	char spec;
 	int (*func)(va_list);
-} fmt_t
+} fmt_t;
 
 int _printf(const char *format, ...);
 
