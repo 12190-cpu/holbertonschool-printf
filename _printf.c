@@ -2,56 +2,35 @@
 
 /**
  * _printf - affiche du texte formaté (simplifié)
- * @format: chaîne de format
+ * @format: chaîne de forma
  * Return: nombre total de caractères imprimés
  */
 int _printf(const char *format, ...)
 {
+	int i, printed_chars = 0;
 	va_list args;
-	int i = 0, j, count = 0;
 
-	format_t specifiers[] = {
-		{'c', print_char},
-		{'s', print_string},
-		{'%', print_percent},
-		{'\0', NULL}
-	};
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
 
-	while (format && format[i])
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == '\0')
 				break;
-			j = 0;
-			while (specifiers[j].spec)
-			{
-				if (format[i] == specifiers[j].spec)
-				{
-					count += specifiers[j].func(args);
-					break;
-				}
-				j++;
-			}
-			if (specifiers[j].spec == '\0')
-			{
-				_putchar('%');
-				_putchar(format[i]);
-				count += 2;
-			}
+			printed_chars += handle_print(format, args, &i);
 		}
 		else
 		{
 			_putchar(format[i]);
-			count++;
+			printed_chars++;
 		}
-		i++;
 	}
+
 	va_end(args);
-	return (count);
+	return (printed_chars);
 }
