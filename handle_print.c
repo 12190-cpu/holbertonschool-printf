@@ -17,6 +17,8 @@ int handle_print(const char *format, va_list args, int *i)
 		{'c', print_char},
 		{'s', print_string},
 		{'%', print_percent},
+		{'d', print_int},
+		{'i', print_int},
 		{'\0', NULL}
 	};
 
