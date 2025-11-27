@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * _printf - affiche du texte formaté (simplifié)
- * @format: chaîne de forma
- * Return: nombre total de caractères imprimés
+ * _printf - displays simple text
+ * @format: format of the specifier
+ * Return: total of characters printed
  */
 int _printf(const char *format, ...)
 {

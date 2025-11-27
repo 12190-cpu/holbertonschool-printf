@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * print_char - affiche un caractère
- * @args: liste des arguments
- * Return: nombre de caractères imprimés
+ * print_char - displays a character
+ * @args: list of args
+ * Return: number of character printed
  */
 int print_char(va_list args)
 {
@@ -14,9 +14,9 @@ int print_char(va_list args)
 }
 
 /**
- * print_string - affiche une chaîne de caractères
- * @args: liste des arguments
- * Return: nombre de caractères imprimés
+ * print_string - dispays a string
+ * @args: list of args
+ * Return: noumber of character printed
  */
 int print_string(va_list args)
 {
@@ -35,9 +35,9 @@ int print_string(va_list args)
 }
 
 /**
- * print_percent - affiche le caractère '%'
- * @args: liste des arguments (non utilisé)
- * Return: nombre de caractères imprimés
+ * print_percent - displays the '%' character
+ * @args: list of unused args
+ * Return: number of character printed
  */
 int print_percent(va_list args)
 {

@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * handle_print - gère les spécificateurs de format
- * @format: chaîne de format complète
- * @args: liste des arguments
- * @i: pointeur vers l’index courant dans format
+ * handle_print - manage the specifiers
+ * @format: format chain
+ * @args: list of args
+ * @i: pointer to index in format
  *
- * Return: nombre de caractères imprimés
+ * Return: characters printed
  */
 int handle_print(const char *format, va_list args, int *i)
 {
@@ -31,7 +31,6 @@ int handle_print(const char *format, va_list args, int *i)
 		}
 	}
 
-	/* Si spécificateur inconnu : afficher littéralement */
 	_putchar('%');
 	_putchar(format[*i]);
 	return (2);
