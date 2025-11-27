@@ -67,8 +67,7 @@ Valgrind to check memory leaks : valgrind --leak-check=full ./test
 
 ## Flowchart
 
-
-
+<img width="382" height="621" alt="Capture d’écran 2025-11-28 à 00 38 20" src="https://github.com/user-attachments/assets/fc3624d5-e3ea-4754-a974-262d98558e29" />
 
 ## Authors
 
