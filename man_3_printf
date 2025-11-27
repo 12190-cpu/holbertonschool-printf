@@ -1,20 +1,92 @@
-PRINTF PROJECT
+.TH _PRINTF 3 "November 2025" "Holberton School" "Library Functions Manual"
 
-NAME
-_printf
+.SH NAME
+_printf - custom implementation of the C library printf function
 
-SYNOPSIS
+.SH SYNOPSIS
+.B #include "main.h"
+.br
+.B int _printf(const char *format, ...);
 
-DESCRIPTION
+.SH DESCRIPTION
+The
+.B _printf
+function produces output according to a
+.I format
+string. It writes characters to the standard output stream
+.B stdout
+using the write(2) system call.
 
-SUPPORTED CONVERSION SPECIFIERS
+The format string contains ordinary characters, which are printed as-is,
+and conversion specifiers starting with '%'.
 
-RETURN VALUE
+This implementation handles the following conversion specifiers:
 
-EXAMPLES
+.TP
+.B %c
+Prints a single character.
 
-AUTHOR
+.TP
+.B %s
+Prints a null-terminated string.
+If the argument is NULL, the string "(null)" is printed.
+
+.TP
+.B %%
+Prints a literal percent sign.
+
+.TP
+.B %d
+Prints a signed decimal integer.
+
+.TP
+.B %i
+Prints a signed decimal integer (same as %d).
+
+.PP
+Unsupported specifiers are printed literally: the '%' followed by the unknown character.
+
+.PP
+This simplified version does not support the standard printf features:
+flags, field width, precision, length modifiers, or buffering.
+
+.SH RETURN VALUE
+The
+.B _printf
+function returns the number of characters printed
+(excluding the terminating null byte).
+If an error occurs, such as a NULL format string, the function returns
+.B -1.
+
+.SH EXAMPLES
+Print a character:
+.PP
+.EX
+_printf("Character: %c\n", 'A');
+.EE
+
+Print a string:
+.PP
+.EX
+_printf("String: %s\n", "Holberton");
+.EE
+
+Print integers:
+.PP
+.EX
+_printf("Value: %d\n", 1024);
+_printf("Value: %i\n", -42);
+.EE
+
+Print a percent sign:
+.PP
+.EX
+_printf("Percent: %%\n");
+.EE
+
+.SH DATE
+November 2025
+
+.SH AUTHORS
 Farid GHAIB
 Mahamadou DIARRA
-
-
