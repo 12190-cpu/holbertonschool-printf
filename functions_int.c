@@ -1,56 +1,39 @@
 #include "main.h"
 
 /**
- * print_int - affiche un entier (%d ou %i)
- * @args: liste des arguments
- * Return: nombre de caractères imprimés
+ * print_number - Helper function to print an integer using recursion
+ * @n: The integer to print
+ * Return: Number of characters printed
  */
-int print_int(va_list args)
+int print_number(long n)
 {
-	int n = va_arg(args, int);
-	unsigned int num;
 	int count = 0;
-	char c;
+	char digit;
 
-	/* Gestion du signe négatif */
-	if (n < 0)
-	{
-		_putchar('-');
-		count++;
-		num = -n;  /* on convertit en positif */
-	}
-	else
-	{
-		num = n;
-	}
+	if (n / 10)
+	count += print_number(n / 10);
 
-	/* Affichage récursif du nombre */
-	if (num / 10)
-		count += print_int_num(num / 10); /* fonction auxiliaire */
-
-	c = (num % 10) + '0';
-	_putchar(c);
-	count++;
-
-	return (count);
+	digit = (n % 10) + '0';
+	write(1, &digit, 1);
+	return (count + 1);
 }
 
 /**
- * print_int_num - fonction auxiliaire récursive pour print_int
- * @n: nombre à afficher
- * Return: nombre de caractères imprimés
- */
-int print_int_num(unsigned int n)
+ * print_int - Prints an integer for %d or %i
+ * @args: Argument list
+ * Return: Number of characters printed*/
+int print_int(va_list args)
 {
+	long n = va_arg(args, int);
 	int count = 0;
-	char c;
 
-	if (n / 10)
-		count += print_int_num(n / 10);
+	if (n < 0)
+	{
+		write(1, "-", 1);
+		count++;
+		n = -n;
+	}
 
-	c = (n % 10) + '0';
-	_putchar(c);
-	count++;
-
+	count += print_number(n);
 	return (count);
 }
